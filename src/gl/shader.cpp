@@ -1,7 +1,7 @@
-#include "shader.h"
+#include "gl/shader.h"
 
 #include <string>
-#include "../loader.h"
+#include "loader.h"
 
 using namespace glm;
 

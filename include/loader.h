@@ -7,7 +7,7 @@
 
 #define USE_TEST false
 
-class Loader {
+class Loader{
 public:
 	static void init();
 	static const unsigned char* load(std::string name) { return rawMap[name].first; }

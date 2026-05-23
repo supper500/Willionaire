@@ -121,6 +121,8 @@ void UI::Self::update(){
 	for(int i=0;i<5;i++)
 		attri[i].updateAmount(p->attri[i]);
 	energy.updateAmount(p->energy+1);
+	for(int i=0;i<3;i++)
+		career[i].src=&sprites[p->career[i]];
 	updateBuff();
 }
 #undef GEOM
@@ -139,7 +141,7 @@ void UI::Scene::update(){
 	if(Game::state==Game::Update || Game::state==Game::ChooseCard)
 		for(int i=0;i<3;i++)
 			cards[i]=Item(&sprites[Game::choice[i]],
-				cardTypeClr[Game::choice[i]->type],i*0.1-0.1,0.82,0.03,0.1);
+				cardTypeClr[Game::choice[i]->type],(i-1)*0.13,0.8,0.054,0.128);
 }
 void UI::Scene::draw(){
 	self.draw();

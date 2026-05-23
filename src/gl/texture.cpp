@@ -1,6 +1,6 @@
-#include "texture.h"
+#include "gl/texture.h"
 
-#include "../loader.h"
+#include "loader.h"
 
 void Texture::init(const char* name) {
 	GLFWimage image = Loader::loadGLFWimage(name);

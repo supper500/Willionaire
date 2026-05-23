@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "gl/image.h"
 
 GLenum glCheckError_(const char* file, int line) {
 	GLenum errorCode;

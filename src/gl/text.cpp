@@ -1,8 +1,8 @@
-#include "text.h"
+#include "gl/text.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include "shader.h"
+#include "gl/shader.h"
 #include <map>
 #include <incbin.h>
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project( Willionaire )
+project(Willionaire)
 
 include(FetchContent)
 
@@ -16,6 +16,11 @@ FetchContent_Declare(
 	GIT_TAG 3.4
 )
 
+FetchContent_Declare(
+	freetype
+	GIT_REPOSITORY https://gitlab.freedesktop.org/freetype/freetype.git
+	GIT_TAG        VER-2-14-3
+)
 FetchContent_MakeAvailable(glm)
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -24,16 +29,10 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(glfw)
 
-find_package( OpenGL REQUIRED )
+FetchContent_MakeAvailable(freetype)
 
-include_directories( ${OPENGL_INCLUDE_DIRS} )
+find_package(OpenGL REQUIRED)
 
-find_package(Freetype REQUIRED)
+add_subdirectory(external/glad)
 
-add_subdirectory( external/glad )
-include_directories( external/stb )
-include_directories( external/incbin )
-
-include_directories( include )
-
-add_subdirectory( src )
+add_subdirectory(src)
