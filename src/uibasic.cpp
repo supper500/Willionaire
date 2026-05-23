@@ -115,7 +115,7 @@ UI::Self::Self(::Player* p,std::index_sequence<Is...>):
 	Player(0.05,-0.78,false,p),
 	energy(&sprites[SP_ENERGY],LQH_R,glm::vec4(0.0,0.0,0.0,1.0),GEOM,0,0.042),
 	energyZero(&sprites[SP_ENERGY_ZERO],LQH_R,GEOM),
-	career{Item(&sprites[p->career[Is]],LQH_B,Is*0.1-0.25,-0.85,0.045,0.15)...}{}
+	career{Item(&sprites[p->career[Is]],LQH_B,Is*0.11-0.26,-0.85,0.054,0.128)...}{}
 void UI::Self::update(){
 	::Player *p=&Game::players[pid];
 	for(int i=0;i<5;i++)
@@ -240,12 +240,15 @@ void UI::F1::draw(){
 	for(std::size_t i=0, size=column.size();i<size;i++)
 		Text::render(column[i].name,1.85f*i/size-1.0f,0.88f,0.08f,0,glm::vec3(0.0f));
 	for(std::size_t j=0, size=p.size();j<size;j++){
-		p[j].icon->updateLinear(glm::mat2(0.03f,0.0f,0.0f,0.07f));
+		p[j].icon->updateLinear(glm::mat2(0.03f,0.0f,0.0f,0.071f));
 		p[j].icon->updateTranslation(glm::vec2(-0.955f,0.85f-0.925f/p.size()*(j<<1|1)));
 		p[j].icon->draw();
 		Text::render(p[j].name,-0.9,0.81f-0.925f/p.size()*(j<<1|1),0.08f,0,glm::vec3(0.0f));
 	}
 	Text::render(p[j].content,-0.5f,0.75f,0.08f,35,glm::vec3(0.0f));
+	p[j].icon->updateLinear(glm::mat2(0.27f,0.0f,0.0f,0.64f));
+	p[j].icon->updateTranslation(glm::vec2(0.7f,-0.2f));
+	p[j].icon->draw();
 	UI::_draw_copy(close,glm::vec4());
 }
 void UI::F1::click(double x, double y){

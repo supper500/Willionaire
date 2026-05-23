@@ -120,11 +120,11 @@ void UI::init(){
 	Image tmp;
 	#define ld(x,y) tmp.init(y),sprites[x]=tmp
 	ld(NULL,"LQH");
-	ld(SP_ATTRI_(0),"LQH");
-	ld(SP_ATTRI_(1),"LQH");
-	ld(SP_ATTRI_(2),"LQH");
-	ld(SP_ATTRI_(3),"LQH");
-	ld(SP_ATTRI_(4),"LQH");
+	ld(SP_ATTRI_(0),"Attri0");
+	ld(SP_ATTRI_(1),"Attri1");
+	ld(SP_ATTRI_(2),"Attri2");
+	ld(SP_ATTRI_(3),"Attri3");
+	ld(SP_ATTRI_(4),"Attri4");
 	ld(SP_ENERGY,"Energy");
 	ld(SP_ENERGY_ZERO,"Null");
 	ld(SP_NONE,"Null");
@@ -160,7 +160,7 @@ ldCards(30);ldCards(31);
 	}
 
 	#define SP_(x) (&sprites[reinterpret_cast<void*>(x)])
-	f1.close=new Item(&sprites[SP_HELP_CLOSE],glm::vec4(),0.925f,0.925f,0.075f,0.075f);
+	f1.close=new Item(&sprites[SP_HELP_CLOSE],glm::vec4(),0.9578f,0.925f,0.0422f,0.075f);
 	f1.column.resize(7);
 	for(std::size_t i=0;i<5;i++)
 		f1.column[i].name=Card::typeName[i]+Card::title;
@@ -174,7 +174,7 @@ ldCards(30);ldCards(31);
 	for(const auto&b:Game::buffs)
 		f1.column[6].page.push_back({b->name(),SP_(b),b->description()});
 
-	about.src=&sprites[SP_HELP_CLOSE];
+	about.src=&sprites[SP_HELP];
 	about.color=glm::vec4(0x40/255.0f, 0x70/255.0f, 0xa4/255.0f, 0.6f);
 
 	glEnable(GL_BLEND);

@@ -47,8 +47,8 @@ INCCARD(30);INCCARD(31);
 INCCAREER(0);INCCAREER(1);INCCAREER(2);INCCAREER(3);INCCAREER(4);INCCAREER(5);
 INCCAREER(6);INCCAREER(7);INCCAREER(8);INCCAREER(9);INCCAREER(10);INCCAREER(11);
 
-// #define INCATTRI(x) INCBIN(Attri##x, "../assets/sprites/attri"#x".png")
-// INCATTRI(0);INCATTRI(1);INCATTRI(2);INCATTRI(3);INCATTRI(4);
+#define INCATTRI(x) INCBIN(Attri##x, "../assets/sprites/attri"#x".png")
+INCATTRI(0);INCATTRI(1);INCATTRI(2);INCATTRI(3);INCATTRI(4);
 
 #define INSERTMAP(NAME) rawMap[#NAME]=std::make_pair(g##NAME##Data,g##NAME##Size)
 void Loader::init() {
@@ -84,6 +84,7 @@ INSERTMAP(Card24);INSERTMAP(Card25);INSERTMAP(Card26);INSERTMAP(Card27);INSERTMA
 INSERTMAP(Card30);INSERTMAP(Card31);
 INSERTMAP(Career0);INSERTMAP(Career1);INSERTMAP(Career2);INSERTMAP(Career3);INSERTMAP(Career4);INSERTMAP(Career5);
 INSERTMAP(Career6);INSERTMAP(Career7);INSERTMAP(Career8);INSERTMAP(Career9);INSERTMAP(Career10);INSERTMAP(Career11);
+INSERTMAP(Attri0);INSERTMAP(Attri1);INSERTMAP(Attri2);INSERTMAP(Attri3);INSERTMAP(Attri4);
 }
 char* Loader::loadString(std::string name) {
 	if (stringMap.find(name) != stringMap.end()) return stringMap[name];

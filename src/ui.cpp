@@ -35,7 +35,7 @@ const glm::vec4 cardTypeClr[5]={
 	glm::vec4(255/255.0f, 205/255.0f, 140/255.0f, 1.0f),
 	glm::vec4(210/255.0f, 180/255.0f, 250/255.0f, 1.0f),
 	glm::vec4(255/255.0f, 185/255.0f, 200/255.0f, 1.0f),
-	glm::vec4(255/255.0f, 135/255.0f, 130/255.0f, 1.0f)
+	glm::vec4(242/255.0f, 134/255.0f, 136/255.0f, 1.0f)
 };
 
 void UI::addCareer(const char* src){
@@ -43,14 +43,14 @@ void UI::addCareer(const char* src){
 	for(int i=0;i<5;i++)
 		choice.emplace_back(
 			&sprites[Game::careers[read_s(src)]],
-			LQH_B,0.2*i-0.4,0.3,0.08,0.25
+			LQH_B,0.25*i-0.5,0.3,0.108,0.256
 		);
 	_requireChoice=3;
 	_acceptChoice=true;
 	_callback=[]{
 		for(int i=0,j=0;i<5;i++)
 			if(choice[i].selected){
-				scene->self.career[j].x=0.2*i-0.4;
+				scene->self.career[j].x=0.25*i-0.5;
 				scene->self.career[j++].y=0.3;
 			}
 	};
@@ -62,7 +62,7 @@ void UI::chooseCard(){
 		choice.emplace_back(
 			&sprites[Game::choice[i]],
 			cardTypeClr[Game::choice[i]->type],
-			(i-1)*0.25,0.3,0.1,0.3
+			(i-1)*0.3,0.3,0.135,0.32
 		);
 	_requireChoice=1;
 	_acceptChoice=true;
@@ -79,11 +79,11 @@ void UI::FWHK(){
 	choice.clear();
 	choice.emplace_back(
 		&sprites[SP_ATTRI_(1)],
-		attriClr[1],-0.125,0.3,0.1,0.3
+		attriClr[1],-0.125,0.3,0.1,0.2
 	);
 	choice.emplace_back(
 		&sprites[SP_ATTRI_(4)],
-		attriClr[4],0.125,0.3,0.1,0.3
+		attriClr[4],0.125,0.3,0.1,0.2
 	);
 	_requireChoice=1;
 	_acceptChoice=true;
@@ -182,6 +182,7 @@ void UI::click(GLFWwindow*, int button, int action, int){
 		}
 		if(_callback){
 			_callback();
+			if(_keepChoice) return;
 			_callback=NULL;
 		}
 		if(_keepChoice) return;
