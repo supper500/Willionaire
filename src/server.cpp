@@ -218,8 +218,8 @@ int serverMain() {
 	for(int i=0;i<n;i++)
 		for(int j=0;j<3;j++)
 			Game::players[i].career[j]=choice[i][Clamp(res[i][j],0,4)];
-	delete choice;
-	delete res;
+	delete []choice;
+	delete []res;
 
 	while(!Game::round());
 

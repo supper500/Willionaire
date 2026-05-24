@@ -6,14 +6,6 @@ add_custom_target(update_force_recompile ALL
     VERBATIM
 )
 
-set_source_files_properties(loader.cpp
-    PROPERTIES OBJECT_DEPENDS "${FORCE_RECOMPILE_STAMP}"
-)
-
-set_source_files_properties(src/main.c PROPERTIES
-    OBJECT_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../assets/simsun.ttc"
-)
-
 set(WILLIONAIRE-SRC
 	main.cpp
 	card.cpp
@@ -37,10 +29,43 @@ set(WILLIONAIRE-SRC
 
 add_executable(Willionaire ${WILLIONAIRE-SRC} )
 
+if(MSVC)
+    set(INCBIN_OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/data.c)
+	set(INCBIN_SOURCES
+		loader.cpp
+		gl/text.cpp
+	)
+    add_custom_command(
+        OUTPUT ${INCBIN_OUTPUT}
+        COMMAND incbin_generator
+        ARGS
+            ${INCBIN_SOURCES}
+            -o ${INCBIN_OUTPUT}
+			"-I${CMAKE_CURRENT_SOURCE_DIR}"
+        DEPENDS incbin_generator ${INCBIN_SOURCES} ${FORCE_RECOMPILE_STAMP}
+        COMMENT "Generating incbin data.c for MSVC"
+        VERBATIM
+    )
+	target_sources(Willionaire PRIVATE ${INCBIN_OUTPUT})
+	target_compile_options(Willionaire PRIVATE /utf-8 /std:c++17)
+else()
+
+set_source_files_properties(loader.cpp
+    PROPERTIES OBJECT_DEPENDS "${FORCE_RECOMPILE_STAMP}"
+)
+
+set_source_files_properties(gl/text.cpp PROPERTIES
+    OBJECT_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../assets/simsun.ttc"
+)
+
+target_compile_options(Willionaire PRIVATE -std=c++17)
+
+endif()
+
 target_include_directories(Willionaire PRIVATE
 	${OPENGL_INCLUDE_DIRS}
 	../external/stb
-	../external/incbin
+	../external/incbin/include
 	../include
 )
 

@@ -31,24 +31,66 @@ INCBIN(LQH, "../assets/sprites/lqh.png");
 INCBIN(Energy, "../assets/sprites/energy.png");
 INCBIN(Null, "../assets/sprites/null.png");
 INCBIN(About, "../assets/sprites/about.png");
+INCBIN(Cancel, "../assets/sprites/cancel.png");
 
-#define INCDICE(x) INCBIN(Dice##x, "../assets/sprites/dice_"#x".png")
-INCDICE(1);INCDICE(2);INCDICE(3);INCDICE(4);INCDICE(5);INCDICE(6);
+INCBIN(Dice1, "../assets/sprites/dice_1.png");
+INCBIN(Dice2, "../assets/sprites/dice_2.png");
+INCBIN(Dice3, "../assets/sprites/dice_3.png");
+INCBIN(Dice4, "../assets/sprites/dice_4.png");
+INCBIN(Dice5, "../assets/sprites/dice_5.png");
+INCBIN(Dice6, "../assets/sprites/dice_6.png");
 
-#define INCCARD(x) INCBIN(Card##x, "../assets/sprites/card"#x".png")
-INCCARD(0);INCCARD(1);INCCARD(2);INCCARD(3);INCCARD(4);INCCARD(5);
-INCCARD(6);INCCARD(7);INCCARD(8);INCCARD(9);INCCARD(10);INCCARD(11);
-INCCARD(12);INCCARD(13);INCCARD(14);INCCARD(15);INCCARD(16);INCCARD(17);
-INCCARD(18);INCCARD(19);INCCARD(20);INCCARD(21);INCCARD(22);INCCARD(23);
-INCCARD(24);INCCARD(25);INCCARD(26);INCCARD(27);INCCARD(28);INCCARD(29);
-INCCARD(30);INCCARD(31);
+INCBIN(Card0, "../assets/sprites/card0.png");
+INCBIN(Card1, "../assets/sprites/card1.png");
+INCBIN(Card2, "../assets/sprites/card2.png");
+INCBIN(Card3, "../assets/sprites/card3.png");
+INCBIN(Card4, "../assets/sprites/card4.png");
+INCBIN(Card5, "../assets/sprites/card5.png");
+INCBIN(Card6, "../assets/sprites/card6.png");
+INCBIN(Card7, "../assets/sprites/card7.png");
+INCBIN(Card8, "../assets/sprites/card8.png");
+INCBIN(Card9, "../assets/sprites/card9.png");
+INCBIN(Card10, "../assets/sprites/card10.png");
+INCBIN(Card11, "../assets/sprites/card11.png");
+INCBIN(Card12, "../assets/sprites/card12.png");
+INCBIN(Card13, "../assets/sprites/card13.png");
+INCBIN(Card14, "../assets/sprites/card14.png");
+INCBIN(Card15, "../assets/sprites/card15.png");
+INCBIN(Card16, "../assets/sprites/card16.png");
+INCBIN(Card17, "../assets/sprites/card17.png");
+INCBIN(Card18, "../assets/sprites/card18.png");
+INCBIN(Card19, "../assets/sprites/card19.png");
+INCBIN(Card20, "../assets/sprites/card20.png");
+INCBIN(Card21, "../assets/sprites/card21.png");
+INCBIN(Card22, "../assets/sprites/card22.png");
+INCBIN(Card23, "../assets/sprites/card23.png");
+INCBIN(Card24, "../assets/sprites/card24.png");
+INCBIN(Card25, "../assets/sprites/card25.png");
+INCBIN(Card26, "../assets/sprites/card26.png");
+INCBIN(Card27, "../assets/sprites/card27.png");
+INCBIN(Card28, "../assets/sprites/card28.png");
+INCBIN(Card29, "../assets/sprites/card29.png");
+INCBIN(Card30, "../assets/sprites/card30.png");
+INCBIN(Card31, "../assets/sprites/card31.png");
 
-#define INCCAREER(x) INCBIN(Career##x, "../assets/sprites/career"#x".png")
-INCCAREER(0);INCCAREER(1);INCCAREER(2);INCCAREER(3);INCCAREER(4);INCCAREER(5);
-INCCAREER(6);INCCAREER(7);INCCAREER(8);INCCAREER(9);INCCAREER(10);INCCAREER(11);
+INCBIN(Career0, "../assets/sprites/career0.png");
+INCBIN(Career1, "../assets/sprites/career1.png");
+INCBIN(Career2, "../assets/sprites/career2.png");
+INCBIN(Career3, "../assets/sprites/career3.png");
+INCBIN(Career4, "../assets/sprites/career4.png");
+INCBIN(Career5, "../assets/sprites/career5.png");
+INCBIN(Career6, "../assets/sprites/career6.png");
+INCBIN(Career7, "../assets/sprites/career7.png");
+INCBIN(Career8, "../assets/sprites/career8.png");
+INCBIN(Career9, "../assets/sprites/career9.png");
+INCBIN(Career10, "../assets/sprites/career10.png");
+INCBIN(Career11, "../assets/sprites/career11.png");
 
-#define INCATTRI(x) INCBIN(Attri##x, "../assets/sprites/attri"#x".png")
-INCATTRI(0);INCATTRI(1);INCATTRI(2);INCATTRI(3);INCATTRI(4);
+INCBIN(Attri0, "../assets/sprites/attri0.png");
+INCBIN(Attri1, "../assets/sprites/attri1.png");
+INCBIN(Attri2, "../assets/sprites/attri2.png");
+INCBIN(Attri3, "../assets/sprites/attri3.png");
+INCBIN(Attri4, "../assets/sprites/attri4.png");
 
 #define INSERTMAP(NAME) rawMap[#NAME]=std::make_pair(g##NAME##Data,g##NAME##Size)
 void Loader::init() {
@@ -75,6 +117,7 @@ void Loader::init() {
 	INSERTMAP(Energy);
 	INSERTMAP(Null);
 	INSERTMAP(About);
+	INSERTMAP(Cancel);
 INSERTMAP(Dice1);INSERTMAP(Dice2);INSERTMAP(Dice3);INSERTMAP(Dice4);INSERTMAP(Dice5);INSERTMAP(Dice6);
 INSERTMAP(Card0);INSERTMAP(Card1);INSERTMAP(Card2);INSERTMAP(Card3);INSERTMAP(Card4);INSERTMAP(Card5);
 INSERTMAP(Card6);INSERTMAP(Card7);INSERTMAP(Card8);INSERTMAP(Card9);INSERTMAP(Card10);INSERTMAP(Card11);

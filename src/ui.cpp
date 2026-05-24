@@ -22,6 +22,7 @@ Cube* UI::cube;
 std::string UI::addr;
 bool UI::addrError;
 UI::Item UI::about;
+std::vector<glm::vec4> UI::careerColor;
 const glm::vec4 LQH_R(1.0,0.0,0.0,1.0),LQH_B(0.0,0.0,1.0,1.0);
 const glm::vec4 attriClr[5]={
 	glm::vec4(0x5c/255.0f, 0xba/255.0f, 0xff/255.0f, 1.0f),
@@ -40,11 +41,13 @@ const glm::vec4 cardTypeClr[5]={
 
 void UI::addCareer(const char* src){
 	choice.clear();
-	for(int i=0;i<5;i++)
+	for(int i=0;i<5;i++){
+		auto x=read_s(src);
 		choice.emplace_back(
-			&sprites[Game::careers[read_s(src)]],
-			LQH_B,0.25*i-0.5,0.3,0.108,0.256
+			&sprites[Game::careers[x]],
+			careerColor[x],0.25*i-0.5,0.3,0.108,0.256
 		);
+	}
 	_requireChoice=3;
 	_acceptChoice=true;
 	_callback=[]{
@@ -154,6 +157,10 @@ void UI::click(GLFWwindow*, int button, int action, int){
 		f1.click(hoverX, hoverY);
 		return;
 	}
+	if(about.hover()){
+		f1.show=true;
+		return;
+	}
 	if(scene && _requireEnergy){
 		int h=scene->self.energy.hover();
 		if(!h) return;
@@ -200,6 +207,7 @@ void UI::drawMenu(){
 		c.anim();
 		addHighlightable(&c);
 	}
+	units[1].emplace_back(&about,glm::vec4(),_draw_copy);
 	for(int i=0;i<3;i++)
 		for(auto t:units[i])
 			std::get<2>(t)(std::get<0>(t),std::get<1>(t));
@@ -214,14 +222,13 @@ void UI::drawClient(){
 		c.anim();
 		addHighlightable(&c);
 	}
+	units[1].emplace_back(&about,glm::vec4(),_draw_copy);
 	for(int i=0;i<3;i++)
 		for(auto t:units[i])
 			std::get<2>(t)(std::get<0>(t),std::get<1>(t));
 	Text::render(addr, -0.4, 0.2, 0.08, 30, glm::vec3(0.0f));
-	// Text::text(-0.4,0.2,0.02,0.03,0.04,0.08,addr,30,sprites[SP_FONT].ID);
-	// using namespace std::string_literals;
-	// if(addrError)
-	// 	Text::text(-0.4,0.28,0.02,0.03,0.04,0.08,"Failed"s,0,sprites[SP_FONT].ID);
+	if(addrError)
+		Text::render("Failed", -0.4, 0.4, 0.08, 0, glm::vec4(1.0f,0.0f,0.0f,0.8f));
 }
 void UI::drawInGame(){
 	for(int i=0;i<3;i++) units[i].clear();
@@ -239,6 +246,7 @@ void UI::drawInGame(){
 		if(c.selected)
 			units[0].emplace_back(&c,c.color,_draw_pulse);
 	}
+	units[1].emplace_back(&about,glm::vec4(),_draw_copy);
 	for(int i=0;i<3;i++)
 		for(auto t:units[i])
 			std::get<2>(t)(std::get<0>(t),std::get<1>(t));
@@ -331,6 +339,7 @@ void UI::update(){
 					glfwSetWindowShouldClose(Window::window,GLFW_TRUE);
 				}
 			};
+			about.move(-0.8f,-0.8f);
 			break;
 		case Game::Client:
 			picker=new ColorPicker;
@@ -344,8 +353,10 @@ void UI::update(){
 			_acceptChoice=true;
 			_keepChoice=true;
 			_callback=&enterIP;
+			about.move(-0.8f,-0.8f);
 			break;
 		default:
+			about.move(0.3f,0.8f);
 			if(scene) scene->update();
 			break;
 	}

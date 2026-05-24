@@ -4,6 +4,7 @@
 #include FT_FREETYPE_H
 #include "gl/shader.h"
 #include <map>
+#include <vector>
 #include <incbin.h>
 
 #define FONT_SIZE 48.0f

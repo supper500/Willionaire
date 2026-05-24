@@ -122,7 +122,8 @@ void UI::Self::update(){
 		attri[i].updateAmount(p->attri[i]);
 	energy.updateAmount(p->energy+1);
 	for(int i=0;i<3;i++)
-		career[i].src=&sprites[p->career[i]];
+		career[i].src=&sprites[p->career[i]],
+		career[i].color=careerColor[Game::idMap[p->career[i]]];
 	updateBuff();
 }
 #undef GEOM

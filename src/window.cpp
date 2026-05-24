@@ -13,7 +13,6 @@ int Window::init(){
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	unsigned wndWidth = 1920, wndHeight = 1080;
@@ -37,6 +36,9 @@ int Window::init(){
 			_x=width, _y=height;
 		});
 	glfwGetFramebufferSize(window, &_x, &_y);
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	glfwSetWindowAspectRatio(window, width, height);
 	return 0;
 }
 using namespace std::chrono;

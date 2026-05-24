@@ -1,5 +1,6 @@
 # Willionaire
 for SQTP
 
-It only works on Windows because it uses winsock.
-It doesn't work on MSVC because it uses [incbin](https://github.com/graphitemaster/incbin).
+A Windows game about career.
+
+It supports MinGW and Visual Studio (the latter spends much more time compiling due to use of [incbin](https://github.com/graphitemaster/incbin) and produces tons of warnings)

@@ -35,4 +35,6 @@ find_package(OpenGL REQUIRED)
 
 add_subdirectory(external/glad)
 
+add_subdirectory(external/incbin)
+
 add_subdirectory(src)

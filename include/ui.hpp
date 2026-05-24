@@ -210,6 +210,7 @@ class UI{
 	static int _self_color;
 	static F1 f1;
 	static Item about;
+	static std::vector<glm::vec4> careerColor;
 	static void hoverInit();
 	static void drawInGame();
 	static void drawMenu();

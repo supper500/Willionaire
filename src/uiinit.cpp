@@ -127,7 +127,7 @@ void UI::init(){
 	ld(SP_ATTRI_(4),"Attri4");
 	ld(SP_ENERGY,"Energy");
 	ld(SP_ENERGY_ZERO,"Null");
-	ld(SP_NONE,"Null");
+	ld(SP_NONE,"Cancel");
 	ld(SP_MENU_BACKGROUND,"LQH");
 	ld(SP_MENU_CLIENT,"LQH");
 	ld(SP_MENU_SERVER,"LQH");
@@ -136,11 +136,15 @@ void UI::init(){
 	ld(SP_CLIENT_BACKGROUND,"LQH");
 	ld(SP_CLIENT_ENTER,"LQH");
 	ld(SP_HELP,"About");
-	ld(SP_HELP_CLOSE,"Null");
+	ld(SP_HELP_CLOSE,"Cancel");
 
-	#define ldCareers(x) ld(Game::careers[x],"Career"#x);
-ldCareers(0);ldCareers(1);ldCareers(2);ldCareers(3);ldCareers(4);ldCareers(5);
-ldCareers(6);ldCareers(7);ldCareers(8);ldCareers(9);ldCareers(10);ldCareers(11);
+	for(std::size_t i=0;i<Game::careers.size();i++){
+		char name[10]="Career";
+		sprintf(name+6,"%d",i);
+		ld(Game::careers[i],name);
+		const unsigned char* p=Loader::loadGLFWimage(name).pixels;
+		careerColor.emplace_back(*p/256.0f, *(p+1)/256.0f, *(p+2)/256.0f, *(p+3)/256.0f/2.0f);
+	}
 
 	#define ldCards(x) ld(Game::cards[x],"Card"#x)
 ldCards(0);ldCards(1);ldCards(2);ldCards(3);ldCards(4);ldCards(5);
@@ -176,6 +180,7 @@ ldCards(30);ldCards(31);
 
 	about.src=&sprites[SP_HELP];
 	about.color=glm::vec4(0x40/255.0f, 0x70/255.0f, 0xa4/255.0f, 0.6f);
+	about.rx=0.09f, about.ry=0.09f;
 
 	glEnable(GL_BLEND);
 	glEnable(GL_PROGRAM_POINT_SIZE);
