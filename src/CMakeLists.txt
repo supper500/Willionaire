@@ -27,7 +27,7 @@ set(WILLIONAIRE-SRC
 	gl/texture.cpp
 )
 
-add_executable(Willionaire ${WILLIONAIRE-SRC} )
+add_executable(Willionaire WIN32 ${WILLIONAIRE-SRC})
 
 if(MSVC)
     set(INCBIN_OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/data.c)

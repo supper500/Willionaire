@@ -5,6 +5,9 @@
 #include "buff.hpp"
 #include "career.hpp"
 
+extern std::string _menu_string0, _menu_string1, _menu_string2;
+extern std::string _client_string0, _client_string1, _client_string2;
+
 void UI::init(){
 	Loader::init();
 	Image::initAll();
@@ -13,6 +16,12 @@ void UI::init(){
 	for(const auto& c:Game::cards) characters+=c->characters();
 	for(const auto& c:Game::careers) characters+=c->characters();
 	for(const auto& n:Card::typeName) characters+=n;
+	characters+=_menu_string0;
+	characters+=_menu_string1;
+	characters+=_menu_string2;
+	characters+=_client_string0;
+	characters+=_client_string1;
+	characters+=_client_string2;
 	characters+=Card::title;
 	Text::init(characters);
 	ColorPicker::init();
@@ -128,13 +137,11 @@ void UI::init(){
 	ld(SP_ENERGY,"Energy");
 	ld(SP_ENERGY_ZERO,"Null");
 	ld(SP_NONE,"Cancel");
-	ld(SP_MENU_BACKGROUND,"LQH");
-	ld(SP_MENU_CLIENT,"LQH");
-	ld(SP_MENU_SERVER,"LQH");
-	ld(SP_MENU_QUIT,"LQH");
-	ld(SP_GAME_BACKGROUND,"LQH");
-	ld(SP_CLIENT_BACKGROUND,"LQH");
-	ld(SP_CLIENT_ENTER,"LQH");
+	ld(SP_MENU_BACKGROUND,"BackGround");
+	ld(SP_MENU_BUTTON,"Button");
+	ld(SP_GAME_BACKGROUND,"BackGround");
+	ld(SP_CLIENT_BACKGROUND,"BackGround");
+	ld(SP_CLIENT_ENTER,"Button");
 	ld(SP_HELP,"About");
 	ld(SP_HELP_CLOSE,"Cancel");
 
@@ -154,12 +161,12 @@ ldCards(18);ldCards(19);ldCards(20);ldCards(21);ldCards(22);ldCards(23);
 ldCards(24);ldCards(25);ldCards(26);ldCards(27);ldCards(28);ldCards(29);
 ldCards(30);ldCards(31);
 
-	ld(Game::buffs[0],"LQH");
-	ld(Game::buffs[1],"LQH");
-	ld(Game::buffs[2],"LQH");
-	ld(Game::buffs[3],"LQH");
-	ld(Game::buffs[4],"LQH");
-	ld(Game::buffs[5],"LQH");
+	ld(Game::buffs[0],"Info");
+	ld(Game::buffs[1],"Info");
+	ld(Game::buffs[2],"Info");
+	ld(Game::buffs[3],"Info");
+	ld(Game::buffs[4],"Info");
+	ld(Game::buffs[5],"Info");
 	#undef ld
 	}
 

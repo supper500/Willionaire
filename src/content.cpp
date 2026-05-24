@@ -17,6 +17,8 @@ BUFF_INFO(LieFlat,"躺平摆烂","全能力-1，但体力一直为6")
 #include "card.hpp"
 #include "career.hpp"
 std::string Career::title;
+std::string _menu_string0, _menu_string1, _menu_string2;
+std::string _client_string0, _client_string1, _client_string2;
 void Game::init(){
 	Card::typeName[0]="学习类";
 	Card::typeName[1]="实践类";
@@ -25,6 +27,12 @@ void Game::init(){
 	Card::typeName[4]="比赛类";
 	Card::title="卡牌";
 	Career::title="职业";
+	_menu_string0="客户端";
+	_menu_string1="服务端";
+	_menu_string2="退出";
+	_client_string0="连接";
+	_client_string1="连接失败";
+	_client_string2="服务器地址：";
 	#define a p.attri
 	#define his(x) p.history[p.history.size()-x]->type==Card::Study
 	careers={

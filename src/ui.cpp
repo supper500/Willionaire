@@ -198,6 +198,8 @@ void UI::click(GLFWwindow*, int button, int action, int){
 		_acceptChoice=false;
 	}
 }
+
+extern std::string _menu_string0, _menu_string1, _menu_string2;
 void UI::drawMenu(){
 	for(int i=0;i<3;i++) units[i].clear();
 	glClearColor(1.0,1.0,1.0,1.0);
@@ -211,7 +213,11 @@ void UI::drawMenu(){
 	for(int i=0;i<3;i++)
 		for(auto t:units[i])
 			std::get<2>(t)(std::get<0>(t),std::get<1>(t));
+	Text::render(_menu_string0,-0.7,0.565f,0.08f,0,glm::vec3(0.0f));
+	Text::render(_menu_string1,-0.7,0.265f,0.08f,0,glm::vec3(0.0f));
+	Text::render(_menu_string2,-0.7,-0.035f,0.08f,0,glm::vec3(0.0f));
 }
+extern std::string _client_string0, _client_string1, _client_string2;
 void UI::drawClient(){
 	for(int i=0;i<3;i++) units[i].clear();
 	glClearColor(0.0,0.0,1.0,1.0);
@@ -226,9 +232,10 @@ void UI::drawClient(){
 	for(int i=0;i<3;i++)
 		for(auto t:units[i])
 			std::get<2>(t)(std::get<0>(t),std::get<1>(t));
-	Text::render(addr, -0.4, 0.2, 0.08, 30, glm::vec3(0.0f));
+	Text::render(_client_string0, 0.45, -0.535, 0.08, 0, glm::vec3(0.0f));
+	Text::render(_client_string2+addr, -0.8, 0.2, 0.08, 30, glm::vec3(0.0f));
 	if(addrError)
-		Text::render("Failed", -0.4, 0.4, 0.08, 0, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+		Text::render(_client_string1, -0.4, 0.4, 0.08, 0, glm::vec3(1.0f,0.0f,0.0f));
 }
 void UI::drawInGame(){
 	for(int i=0;i<3;i++) units[i].clear();
@@ -269,8 +276,8 @@ void UI::drawInGame(){
 		glDrawArrays(GL_TRIANGLES,0,36);
 		glDisable(GL_DEPTH_TEST);
 		static int still=0;
-		cube->update(0.007);
-		cube->update(0.007);
+		cube->update(0.009);
+		cube->update(0.009);
 		if(cube->still()) still++;
 		else still=0;
 		if(still>60){
@@ -312,20 +319,21 @@ void UI::start(int id){
 	scene=new Scene(id);
 }
 void UI::update(){
+	const auto buttonC=glm::vec4(245/255.0f,245/255.0f,245/255.0f,1.0f);
 	switch(Game::state){
 		case Game::Menu:
 			choice.clear();
 			choice.emplace_back(
-				&sprites[SP_MENU_CLIENT],
-				LQH_R,-0.6f,0.6f,0.2f,0.1f
+				&sprites[SP_MENU_BUTTON],
+				buttonC,-0.6f,0.6f,0.2f,0.1f
 			);
 			choice.emplace_back(
-				&sprites[SP_MENU_SERVER],
-				LQH_B,-0.6f,0.3f,0.2f,0.1f
+				&sprites[SP_MENU_BUTTON],
+				buttonC,-0.6f,0.3f,0.2f,0.1f
 			);
 			choice.emplace_back(
-				&sprites[SP_MENU_QUIT],
-				LQH_R,-0.6f,0.0f,0.2f,0.1f
+				&sprites[SP_MENU_BUTTON],
+				buttonC,-0.6f,0.0f,0.2f,0.1f
 			);
 			_requireChoice=1;
 			_acceptChoice=true;
@@ -339,7 +347,7 @@ void UI::update(){
 					glfwSetWindowShouldClose(Window::window,GLFW_TRUE);
 				}
 			};
-			about.move(-0.8f,-0.8f);
+			about.move(-0.9f,-0.8f);
 			break;
 		case Game::Client:
 			picker=new ColorPicker;
@@ -347,13 +355,13 @@ void UI::update(){
 			choice.clear();
 			choice.emplace_back(
 				&sprites[SP_CLIENT_ENTER],
-				LQH_R,0.5,-0.5,0.2,0.1
+				buttonC,0.5,-0.5,0.2,0.1
 			);
 			_requireChoice=1;
 			_acceptChoice=true;
 			_keepChoice=true;
 			_callback=&enterIP;
-			about.move(-0.8f,-0.8f);
+			about.move(-0.9f,-0.8f);
 			break;
 		default:
 			about.move(0.3f,0.8f);

@@ -166,7 +166,7 @@ class UI{
 	public:
 		static void init();
 		#define dis() static_cast<float>(rand()) / (RAND_MAX+1) * 2 - 1.0f
-		ColorPicker(float x=-0.5f,float y=-0.5f,float rx=0.225f,float ry=0.4f):
+		ColorPicker(float x=0.5f,float y=0.35f,float rx=0.225f,float ry=0.4f):
 			Quad(x,y,rx,ry),pos(dis(),dis()){}
 		#undef dis
 		void draw() const;
@@ -245,9 +245,9 @@ public:
 #define SP_NONE reinterpret_cast<void*>(3ull<<62|2<<8)
 
 #define SP_MENU_BACKGROUND reinterpret_cast<void*>(3ull<<62|4<<8|1)
-#define SP_MENU_CLIENT reinterpret_cast<void*>(3ull<<62|4<<8|2)
-#define SP_MENU_SERVER reinterpret_cast<void*>(3ull<<62|4<<8|3)
-#define SP_MENU_QUIT reinterpret_cast<void*>(3ull<<62|4<<8|4)
+#define SP_MENU_BUTTON reinterpret_cast<void*>(3ull<<62|4<<8|2)
+// #define SP_MENU_SERVER reinterpret_cast<void*>(3ull<<62|4<<8|3)
+// #define SP_MENU_QUIT reinterpret_cast<void*>(3ull<<62|4<<8|4)
 #define SP_GAME_BACKGROUND reinterpret_cast<void*>(3ull<<62|4<<8|5)
 #define SP_CLIENT_BACKGROUND reinterpret_cast<void*>(3ull<<62|4<<8|6)
 #define SP_CLIENT_ENTER reinterpret_cast<void*>(3ull<<62|4<<8|7)

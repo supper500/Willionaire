@@ -32,6 +32,9 @@ INCBIN(Energy, "../assets/sprites/energy.png");
 INCBIN(Null, "../assets/sprites/null.png");
 INCBIN(About, "../assets/sprites/about.png");
 INCBIN(Cancel, "../assets/sprites/cancel.png");
+INCBIN(Info, "../assets/sprites/info.png");
+INCBIN(Button, "../assets/sprites/button.png");
+INCBIN(BackGround, "../assets/sprites/bg.png");
 
 INCBIN(Dice1, "../assets/sprites/dice_1.png");
 INCBIN(Dice2, "../assets/sprites/dice_2.png");
@@ -118,6 +121,9 @@ void Loader::init() {
 	INSERTMAP(Null);
 	INSERTMAP(About);
 	INSERTMAP(Cancel);
+	INSERTMAP(Info);
+	INSERTMAP(Button);
+	INSERTMAP(BackGround);
 INSERTMAP(Dice1);INSERTMAP(Dice2);INSERTMAP(Dice3);INSERTMAP(Dice4);INSERTMAP(Dice5);INSERTMAP(Dice6);
 INSERTMAP(Card0);INSERTMAP(Card1);INSERTMAP(Card2);INSERTMAP(Card3);INSERTMAP(Card4);INSERTMAP(Card5);
 INSERTMAP(Card6);INSERTMAP(Card7);INSERTMAP(Card8);INSERTMAP(Card9);INSERTMAP(Card10);INSERTMAP(Card11);

@@ -14,10 +14,25 @@ static bool init_winsock() {
 	return true;
 }
 
+void CreateConsole(){
+    if(!AllocConsole()){
+        MessageBoxA(NULL, "Failed to allocate console", "Error", MB_OK);
+        return;
+    }
+    FILE* fDummy;
+    freopen_s(&fDummy, "CONIN$", "r", stdin);
+    freopen_s(&fDummy, "CONOUT$", "w", stdout);
+    freopen_s(&fDummy, "CONOUT$", "w", stderr);
+
+    std::cin.clear();
+    std::cout.clear();
+    std::cerr.clear();
+    std::clog.clear();
+}
+
 int serverMain();
 
 int main(){
-	system("chcp 65001");
 	assert(!Window::init());
 	assert(init_winsock());
 	srand(time(0));
@@ -29,7 +44,10 @@ int main(){
 	Window::show();
 	Window::loop();
 	glfwTerminate();
-	if(Game::state==Game::Server)
+	if(Game::state==Game::Server){
+		CreateConsole();
+		system("chcp 65001");
 		serverMain();
+	}
 	return 0;
 }
