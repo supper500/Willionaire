@@ -228,6 +228,7 @@ UI::ColorPicker::~ColorPicker(){
 }
 
 void UI::F1::draw(){
+	sprites[SP_CLIENT_BACKGROUND].draw();
 	const auto& p=column[i].page;
 	glBindVertexArray(pureVAO);
 	pureColor.use();
