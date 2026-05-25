@@ -77,7 +77,7 @@ void Game::init(){
 		new CardRest<BuffSleep>("睡了12h",1,1,1,1,1,"获得所有能力各1点，但下2回合无法行动"),
 		new CardYouLiQiZhenHu("游历启真湖","能力值最高的和最低的互换"),
 		new CardRest<BuffDaydream>("上课发呆",0,0,0,0,0,"智慧不再增长，但每回合体力改为+3"),
-		new CardRest<BuffLieFlat>("躺平摆烂",-1,-1,-1,-1,-1,"全能力-1，但体力一直为6"),
+		new CardRest<BuffLieFlat>("放松身心",-1,-1,-1,-1,-1,"全能力-1，但体力一直为6"),
 		new CardCompetition("校园歌手大赛",0,0,2,0,0,2,4,"魅力+才华最高者魅力+2"),
 		new CardCompetition("大学生运动会",0,2,0,0,0,1,5,"力量最高者力量+2"),
 		new CardCompetition("大学生演讲比赛",0,0,0,0,2,4,5,"才华最高者才华+2"),
